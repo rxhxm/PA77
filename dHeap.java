@@ -175,19 +175,24 @@
      }
  
      private void trickleDown(int index) {
-         boolean done = false;
-         while (!done) {
-             int bestChildIdx = findBestChildForSwap(index); 
-             if (bestChildIdx == -1) {
-                 done = true; 
-             } else {
-                 T temp = heap[index];
-                 heap[index] = heap[bestChildIdx];
-                 heap[bestChildIdx] = temp;
-                 index = bestChildIdx; 
-             }
-         }
-     }
+        boolean done = false;
+        while (!done) {
+            int bestChildIdx = findBestChildForSwap(index);
+            if (bestChildIdx == -1) {
+                done = true; 
+            } else {
+                if ((isMaxHeap && heap[index].compareTo(heap[bestChildIdx]) < 0) ||
+                    (!isMaxHeap && heap[index].compareTo(heap[bestChildIdx]) > 0)) {
+                    T temp = heap[index];
+                    heap[index] = heap[bestChildIdx];
+                    heap[bestChildIdx] = temp;
+                    index = bestChildIdx; 
+                } else {
+                    done = true; 
+                }
+            }
+        }
+    }
  
      @SuppressWarnings("unchecked")
      private void resize() {
