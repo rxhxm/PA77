@@ -21,6 +21,7 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
     private int d;      // branching factor
     private int nelems; // number of elements
     private boolean isMaxHeap; // indicates whether heap is max or min
+    public int capacity;
 
     public boolean isMaxHeap() {
         return this.isMaxHeap;
@@ -31,7 +32,7 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
      */
     @SuppressWarnings("unchecked")
     public dHeap() {
-        this.heap = (T[]) new Comparable[10];
+        this.heap = (T[]) new Comparable[capacity];
         this.d = 2;
         this.nelems = 0;
         this.isMaxHeap = true;
@@ -143,25 +144,24 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
 
     private int findBestChildForSwap(int index) {
         int bestChildIdx = -1;
-        T bestChildValue = null; // Use T directly instead of an integer best value
-        int firstChildIndex = d * index + 1; // Index of the first child
+        T bestChildValue = null; 
+        int firstChildIndex = d * index + 1; 
     
         for (int i = 0; i < d; i++) {
             int childIdx = firstChildIndex + i;
-            if (childIdx < nelems) { // Check if the child index is within the bounds of the heap
+            if (childIdx < nelems) {
                 T childValue = heap[childIdx];
                 if (bestChildValue == null) {
-                    // If no best child has been found yet, take the first one as the initial best child
                     bestChildValue = childValue;
                     bestChildIdx = childIdx;
                 } else {
-                    // Compare to find the best child based on heap type
+               
                     if (isMaxHeap && childValue.compareTo(bestChildValue) > 0) {
-                        // For max-heap, find the child with the maximum value
+
                         bestChildValue = childValue;
                         bestChildIdx = childIdx;
                     } else if (!isMaxHeap && childValue.compareTo(bestChildValue) < 0) {
-                        // For min-heap, find the child with the minimum value
+          
                         bestChildValue = childValue;
                         bestChildIdx = childIdx;
                     }
