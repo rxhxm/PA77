@@ -17,6 +17,7 @@
  
  public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> {
  
+    private static final int DEFAULT_CAPACITY = 10;
      private T[] heap;   // backing array
      private int d;      // branching factor
      private int nelems; // number of elements
@@ -32,13 +33,12 @@
       */
      @SuppressWarnings("unchecked")
      public dHeap() {
-        this.capacity = 10;
-         this.heap = (T[]) new Comparable[capacity];
-         this.d = 2;
-         this.nelems = 0;
-         this.isMaxHeap = true;
- 
-     }
+        this.capacity = DEFAULT_CAPACITY;
+        this.heap = (T[]) new Comparable[capacity];
+        this.d = 2;
+        this.nelems = 0;
+        this.isMaxHeap = true;
+    }
  
  
      /**
