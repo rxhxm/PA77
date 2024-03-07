@@ -31,7 +31,8 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
      */
     @SuppressWarnings("unchecked")
     public dHeap() {
-        this.heap = (T[]) new Comparable[10];
+        int capacity = 10;
+        this.heap = (T[]) new Comparable[capacity];
         this.d = 2;
         this.nelems = 0;
         this.isMaxHeap = true;
