@@ -21,6 +21,7 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
     private int d;      // branching factor
     private int nelems; // number of elements
     private boolean isMaxHeap; // indicates whether heap is max or min
+    public int capacity = 10;
 
     public boolean isMaxHeap() {
         return this.isMaxHeap;
@@ -31,7 +32,6 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
      */
     @SuppressWarnings("unchecked")
     public dHeap() {
-        int capacity = 10;
         this.heap = (T[]) new Comparable[capacity];
         this.d = 2;
         this.nelems = 0;
