@@ -89,31 +89,29 @@ public class MNIST {
      * @param k the number of nearest neighbors to find
      * @return an array of DataHolders containing the k closest neighbors to image
      */
+
     public static DataHolder[] getClosestMatches(float[] image, int k) {
-    Comparator<DataHolder> comparator = new Comparator<DataHolder>() {
         Comparator<DataHolder> comparator = new Comparator<DataHolder>() {
             @Override
             public int compare(DataHolder d1, DataHolder d2) {
                 return Float.compare(d1.priority, d2.priority);
             }
         };
-    
-        // Initialize the priority queue with the custom comparator
+
         PriorityQueue<DataHolder> queue = new PriorityQueue<>(comparator);
-    
-        // Add all training images to the priority queue with their distance to the given image
+
         for (int i = 0; i < TRAIN_IMAGES.length; i++) {
             float dist = totalDist(image, TRAIN_IMAGES[i]);
             queue.add(new DataHolder(TRAIN_LABELS[i], dist, TRAIN_IMAGES[i]));
         }
-    
-        // Extract the k closest matches from the priority queue
+
         DataHolder[] closestMatches = new DataHolder[k];
         for (int i = 0; i < k; i++) {
-            closestMatches[i] = queue.poll(); // poll() retrieves and removes the head of the queue
+            closestMatches[i] = queue.poll();
         }
         return closestMatches;
     }
+
 
     /**
      * Makes a prediction using the K-NN Classifier
