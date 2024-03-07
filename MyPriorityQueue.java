@@ -69,4 +69,12 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
     public boolean isEmpty() {
         return pQueue.size() == 0;
     }
+
+
+    public boolean offer(T element) {
+        pQueue.add(element); 
+        return true; 
+    }
+
+    
 }
