@@ -143,7 +143,8 @@ public class MNIST {
      * @param imgArr the array to store images (dimension nx784)
      * @param lblArr the array to store labels (dimension n)
      */
-    public static void loadData(String imgFile, String lblFile, float[][] imgArr, short[] lblArr) throws IOException {
+    public static void loadData(String imgFile, String lblFile, float[][] imgArr, short[] lblArr)
+     throws IOException {
 
         InputStream stream;
         File data = Paths.get("src", "data", imgFile).toFile();
